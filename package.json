@@ -1,0 +1,23 @@
+{
+  "name": "@warren-bank/redux-filter-subscriptions-enhancer",
+  "version": "1.0.0",
+  "description": "redux store enhancer: `store.subscribe(listener, filter)` -> `listener(newState, action)`",
+  "main": "./index.js",
+  "browser": "./browser-build/dist/enhancer.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "cd tests && npm run test",
+    "build": "cd browser-build && npm run build"
+  },
+  "author": {
+    "name": "Warren R. Bank",
+    "email": "warren.r.bank@gmail.com",
+    "url": "https://github.com/warren-bank"
+  },
+  "license": "GPL-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/warren-bank/redux-filter-subscriptions-enhancer"
+  }
+}

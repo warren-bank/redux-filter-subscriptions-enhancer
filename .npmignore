@@ -1,0 +1,6 @@
+*
+
+!package.json
+!index.js
+!browser-build/dist/enhancer.js
+!browser-build/dist/enhancer.map

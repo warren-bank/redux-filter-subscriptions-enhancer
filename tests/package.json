@@ -1,0 +1,62 @@
+{
+  "name": "@warren-bank/do-not-publish",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "test": "cross-env NODE_ENV=testing jest"
+  },
+  "dependencies": {
+    "redux": "^3.7.2"
+  },
+  "devDependencies": {
+    "babel-jest": "^22.0.0",
+    "cross-env": "^5.1.1",
+    "jest": "^22.0.0",
+    "jest-cli": "^22.0.1"
+  },
+  "__devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-0": "^6.24.1"
+  },
+  "__babel": {
+    "presets": [
+      "env",
+      "stage-0",
+      "jest"
+    ]
+  },
+  "jest": {
+    "rootDir": "..",
+    "roots": [
+      "<rootDir>/tests"
+    ],
+    "transform": {
+      "\\.(js)$": "<rootDir>/tests/node_modules/babel-jest"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "json"
+    ],
+    "moduleDirectories": [
+      "<rootDir>/tests/node_modules",
+      "<rootDir>/node_modules",
+      "<rootDir>"
+    ],
+    "transformIgnorePatterns": [
+      "/node_modules/"
+    ]
+  },
+  "author": {
+    "name": "Warren R. Bank",
+    "email": "warren.r.bank@gmail.com",
+    "url": "https://github.com/warren-bank"
+  },
+  "license": "GPL-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/warren-bank/redux-filter-subscriptions-enhancer"
+  }
+}
