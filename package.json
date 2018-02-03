@@ -1,6 +1,6 @@
 {
   "name": "@warren-bank/redux-filter-subscriptions-enhancer",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "redux store enhancer: `store.subscribe(listener, filter)` -> `listener(newState, action)`",
   "main": "./index.js",
   "browser": "./browser-build/dist/enhancer.js",
