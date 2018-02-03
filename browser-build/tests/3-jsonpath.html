@@ -8,6 +8,11 @@
   <div id="mocha"></div>
 
   <script src="../dist/enhancer.js"></script>
+
+  <!-- (conditional dependency) "jsonpath" is only required when that filtering strategy is used -->
+  <!-- specifically, the library is referenced when `store.subscribe(listener, filter)` is called with a "string" filter value.. not sooner -->
+  <script src="vendor/jsonpath-1.0.0/jsonpath.min.js"></script>
+
   <script src="vendor/redux-3.7.2/redux.min.js"></script>
 
   <script src="vendor/expect-1.20.2/expect.min.js"></script>

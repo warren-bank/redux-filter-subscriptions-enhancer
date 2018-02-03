@@ -1,5 +1,3 @@
-const jsonpath = require('jsonpath')
-
 const enhancer = next => (...args) => {
   const store = next(...args)
 
@@ -36,7 +34,11 @@ const enhancer = next => (...args) => {
 
   const pure_filter = (oldState, newState) => oldState === newState
 
-  const jsonpath_filter = (path) => (oldState, newState) => jsonpath.value(oldState || {}, path) === jsonpath.value(newState, path)
+  const jsonpath_filter = (path) => {
+    const jsonpath = require('jsonpath')
+
+    return (oldState, newState) => jsonpath.value(oldState || {}, path) === jsonpath.value(newState, path)
+  }
 
   return {
     ...store,

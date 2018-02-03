@@ -3,15 +3,15 @@ const path    = require('path')
 
 module.exports = {
     entry: './src/globals.js',
+    externals: {
+        jsonpath: 'jsonpath'
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'enhancer.js',
         sourceMapFilename: 'enhancer.map'
     },
     devtool: '#source-map',
-    node: {
-        fs: 'empty'
-    },
     resolve: {
         modules: [
             path.resolve('./src'),

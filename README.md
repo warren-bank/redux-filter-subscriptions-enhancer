@@ -185,7 +185,19 @@ npm run test
 
 * global variable(s):
   * window.redux_filter_subscriptions_enhancer
-  * window.jsonpath
+
+* conditional dependencies:
+  * [jsonpath](https://github.com/dchester/jsonpath) is not bundled into the browser build
+    * it was briefly in [v2.0.0](https://github.com/warren-bank/redux-filter-subscriptions-enhancer/releases/tag/v2.0.0)
+      * the size increased from 1.06 KB (v1.0.0) to 164 KB (v2.0.0)
+    * support for _jsonpath_ filters is now an optional feature
+    * to enable this feature:
+      * include the additional browser build script: [jsonpath](https://github.com/dchester/jsonpath/raw/1.0.0/jsonpath.min.js)
+    * to use it:
+      * call `store.subscribe(listener, filter)`
+        * assign to `filter` a string value containing a well-formatted pathExpression
+      * example:
+        * [additional unit tests w/ mocha](https://cdn.rawgit.com/warren-bank/redux-filter-subscriptions-enhancer/master/browser-build/tests/3-jsonpath.html)
 
 #### Legal:
 
