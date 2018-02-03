@@ -8,18 +8,30 @@
     * adds a new (optional) input parameter: `filter`
       * its purpose is to conditionally filter when `listener` is called
       * when its value is:
-        * undefined:
-          * `listener` is called as normal
         * `function`:
           * input: (oldState, newState)
           * output: boolean
-            * when truthy, `listener` is not informed of this state change
-        * `boolean` && true:
-          * `listener` is not informed when `newState` is equal (by reference) to `oldState`
+            * when truthy, `listener` is not called for this _state_ change
+        * `string`:
+          * treated as a [jsonpath](https://github.com/dchester/jsonpath) pathExpression
+            * precondition: _state_ must be an Object
+              * will throw an Error when the root reducer returns a state that's not an Object
+            * pathExpression uniquely defines the path to one specific data structure within the _state_ Object
+          * `filter` looks up the value of this data structure in both `oldState` and `newState`
+            * these values are compared for equality (by reference)
+              * if equal, `listener` is not called for this _state_ change
+        * `boolean`:
+          * if `true`:
+            * `oldState` and `newState` are compared for equality (by reference)
+              * if equal, `listener` is not called for this _state_ change
+                * note: this is optimized but functionally equivalent to the jsonpath pathExpression: "$"
+        * `undefined` | `false` | any other value:
+          * default behavior
+            * `listener` is always called after the root reducer function completes processing a dispatched action
   * `listener(newState, action)`
     * passes information to the `listener`
       * `newState` is the same value returned by `store.getState()`
-      * `action` is the value received by `store.dispatch()` that caused the reducer functions to change state
+      * `action` is the value received by `store.dispatch()` that caused the reducer functions to change _state_
         * it's [debatable](https://github.com/reactjs/redux/issues/580) whether there's any reason a listener should ever use this value
         * it's officially considered by the Redux team to be an [anti-pattern](https://redux.js.org/docs/faq/DesignDecisions.html#does-not-pass-state-action-to-subscribers)
         * but..
@@ -172,7 +184,8 @@ npm run test
   * [source map](https://cdn.rawgit.com/warren-bank/redux-filter-subscriptions-enhancer/master/browser-build/dist/enhancer.map)
 
 * global variable(s):
-  * window.enhancer
+  * window.redux_filter_subscriptions_enhancer
+  * window.jsonpath
 
 #### Legal:
 

@@ -22,9 +22,13 @@ jest.fn = () => {
 const require = path => {
   switch(path) {
     case "index.js":
-      return window.enhancer
+      return window.redux_filter_subscriptions_enhancer
     case "redux":
       return window.Redux
+    case "jsonpath":
+      return window.jsonpath
+    case "deep-freeze":
+      return arg => arg
   }
 }
 
