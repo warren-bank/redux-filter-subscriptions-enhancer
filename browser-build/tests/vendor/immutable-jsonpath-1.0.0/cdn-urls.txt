@@ -1,0 +1,1 @@
+https://github.com/warren-bank/immutable-jsonpath/raw/v1.0.0/browser-build/dist/immutable_jsonpath.js

@@ -29,6 +29,8 @@ const require = path => {
       return window.jsonpath
     case "deep-freeze":
       return arg => arg
+    case "@warren-bank/immutable-jsonpath":
+      return arg => arg
   }
 }
 

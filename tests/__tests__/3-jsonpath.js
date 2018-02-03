@@ -4,6 +4,8 @@ const deepFreeze      = require('deep-freeze')
 const jsonpath        = require('jsonpath')
 const { createStore } = require('redux')
 
+require('@warren-bank/immutable-jsonpath')(jsonpath)
+
 const initialState = {}
 for (let height=1; height<=5; height++) {
   const char = String.fromCharCode( 'a'.charCodeAt(0) + height )
@@ -21,41 +23,8 @@ const reducer = (state=initialState, action) => {
   switch (action.type) {
 
     case 'replace':
-      let newState, root
       let {path, value} = action.payload
-
-      path = path.split('.')
-
-      // walk path copying Objects
-      path.forEach((key, index) => {
-        if (key === '$') { // not a leaf node. must be an object!
-          if (state instanceof Object) {
-            newState = {...state}
-            root = newState
-          }
-          else {
-            return state
-          }
-        }
-        else {
-          if (root[key] === undefined) {
-            return state
-          }
-          if (index < path.length - 1) { // not a leaf node. must be an object!
-            if (root[key] instanceof Object) {
-              root[key] = {...root[key]}
-              root = root[key]
-            }
-            else {
-              return state
-            }
-          }
-          else { // leaf node
-            root[key] = value
-          }
-        }
-      })
-      return newState || state
+      return jsonpath.assign(state, path, value)
 
     case 'reset':
       return action.payload.value
